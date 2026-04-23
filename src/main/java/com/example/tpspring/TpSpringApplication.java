@@ -1,6 +1,7 @@
 package com.example.tpspring;
 
 import com.example.tpspring.service.BavardService;
+import com.example.tpspring.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TpSpringApplication {
 
-    // TP02 - Injection du BavardService par Spring
     @Autowired
     private BavardService bavardService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     public static void main(String[] args) {
         SpringApplication.run(TpSpringApplication.class, args);
@@ -27,9 +30,15 @@ public class TpSpringApplication {
         return "Bonjour, monde !";
     }
 
-    // TP02 - Utilisation du BavardService injecté
+    // TP02 simple - BavardService
     @GetMapping("/blabla")
     public String blabla() {
         return bavardService.parler();
+    }
+
+    // TP02 avancé Exo 1 - NotificationService
+    @GetMapping("/notifier")
+    public String notifier() {
+        return notificationService.notifier();
     }
 }
