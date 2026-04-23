@@ -1,5 +1,6 @@
 package com.example.tpspring;
 
+import com.example.tpspring.circular.ClassA;
 import com.example.tpspring.service.BavardService;
 import com.example.tpspring.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class TpSpringApplication {
     @Autowired
     private NotificationService notificationService;
 
+    @Autowired
+    private ClassA classA;
+
     public static void main(String[] args) {
         SpringApplication.run(TpSpringApplication.class, args);
     }
@@ -36,9 +40,15 @@ public class TpSpringApplication {
         return bavardService.parler();
     }
 
-    // TP02 avancé Exo 1 - NotificationService
+    // TP02 avancé Exo 1 & 2 - NotificationService
     @GetMapping("/notifier")
     public String notifier() {
         return notificationService.notifier();
+    }
+
+    // TP02 avancé Exo 3 - Injection circulaire résolue
+    @GetMapping("/circular")
+    public String circular() {
+        return classA.hello();
     }
 }
